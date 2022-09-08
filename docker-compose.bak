@@ -1,0 +1,43 @@
+version: '3.6'
+services:
+  eco-a:
+    image: shawoo/node:eco
+    environment:
+      - APP_ID=ecoa
+      - APP_PORT=3303
+      - TZ=Asia/Shanghai
+    command: pm2 start bpm.js
+    ports:
+      - "3601:3500"
+    networks:
+      - dapr_weave
+      - default
+    deploy:
+      placement:
+        constraints:
+          - node.hostname==cds
+
+  eco-b:
+    image: shawoo/node:eco
+    environment:
+      - APP_ID=ecob
+      - APP_PORT=3303
+      - TZ=Asia/Shanghai
+    command: pm2 start bpm.js
+    ports:
+      - "3602:3500"
+    networks:
+      - dapr_weave
+      - default
+    deploy:
+      placement:
+        constraints:
+          - node.hostname==cds
+
+networks:
+  dapr_weave:
+    name: dapr_weave
+    driver: "weaveworks/net-plugin:latest_release"
+  default:
+    external:
+      name: my-network

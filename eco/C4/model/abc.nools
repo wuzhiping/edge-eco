@@ -1,0 +1,31 @@
+
+define Inbound {
+    header:null,
+    payload:null,
+    constructor : function(header,payload){
+        this.payload = payload;
+        this.header = header;
+    }
+}
+
+rule "Stamp"
+{
+   when{
+      i : Inbound 1==1;
+   }
+   then{
+      outBound.result = { a:1};
+   }
+}
+
+
+rule "Stamp2"
+{
+   when{
+      i : Inbound 1==1;
+   }
+   then{
+      outBound.result = { b:1};
+   }
+}
+

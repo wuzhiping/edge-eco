@@ -1,0 +1,61 @@
+version: '2'
+services:
+
+  consul:
+    image: consul
+    ports:
+      - "6500:8500"
+    environment:
+      - CONSUL_BIND_INTERFACE=eth0
+
+  zipkin:
+    image: "openzipkin/zipkin"
+    ports:
+      - "6411:9411"
+
+  placement:
+    image: "daprio/dapr"
+    command: ["./placement", "-port", "50005"]
+    ports:
+      - "60005:50005"
+
+  redisdb:
+    image: redis
+    restart: always
+
+  ecoa:
+    image: shawoo/node:edge
+    restart: always
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - /etc/timezone:/etc/timezone:ro
+    environment:
+      - APP_ID=ecoa
+      - APP_PORT=3303
+      - TZ=Asia/Shanghai
+    ports:
+      - 3701:3500
+    depends_on:
+      - consul
+      - redisdb
+      - placement
+      - zipkin
+      
+  ecob:
+    image: shawoo/node:edge
+    restart: always
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - /etc/timezone:/etc/timezone:ro
+    environment:
+      - APP_ID=ecob
+      - APP_PORT=3303
+      - TZ=Asia/Shanghai
+    ports:
+      - 3702:3500
+    depends_on:
+      - consul
+      - redisdb
+      - placement
+      - zipkin
+        
