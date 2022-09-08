@@ -1,7 +1,9 @@
 # docker-compose
-## shawoo/node:edge   shawoo/node:edge-arm
+## shawoo/node:edge
+## shawoo/node:edge-arm
 # docker swarm
-## shawoo/node:eco    shawoo/node:eco-arm
+## shawoo/node:eco    
+## shawoo/node:eco-arm
 
 <pre>
 docker network create -d overlay my-overlay
