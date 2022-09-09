@@ -1,3 +1,5 @@
+# docker pull mcr.microsoft.com/dotnet/runtime:6.0
+
 # docker-compose
 ## shawoo/node:edge
 ## shawoo/node:edge-arm
