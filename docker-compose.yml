@@ -59,3 +59,38 @@ services:
       - placement
       - zipkin
         
+  ecoc:
+    image: shawoo/java8:edge
+    restart: always
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - /etc/timezone:/etc/timezone:ro
+    environment:
+      - APP_ID=ecoc
+      - APP_PORT=8080
+      - TZ=Asia/Shanghai
+    ports:
+      - 3703:3500
+    depends_on:
+      - consul
+      - redisdb
+      - placement
+      - zipkin
+
+  ecod:
+    image: shawoo/dotnet6:edge
+    restart: always
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - /etc/timezone:/etc/timezone:ro
+    environment:
+      - APP_ID=ecod
+      - APP_PORT=5248
+      - TZ=Asia/Shanghai
+    ports:
+      - 3704:3500
+    depends_on:
+      - consul
+      - redisdb
+      - placement
+      - zipkin
