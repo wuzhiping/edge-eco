@@ -1,5 +1,6 @@
 #FROM openjdk:8-jdk-oracle
-FROM arm64v8/openjdk:8-jdk-oracle
+#FROM arm64v8/openjdk:8-jdk-oracle
+FROM arm32v7/openjdk:8
 WORKDIR /opt/
 
 USER root
