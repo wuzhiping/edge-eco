@@ -25,6 +25,9 @@ docker service create --name ecob -e APP_ID=ecob -e APP_PORT=3303 -p 3602:3500 -
 docker service create --name ecoc -e APP_ID=ecoc -e APP_PORT=3303 -p 3603:3500 --network my-network --constraint 'node.hostname==black-pearl' shawoo/node:eco-arm
 docker service create --name ecod -e APP_ID=ecod -e APP_PORT=3303 -p 3604:3500 --network my-network --constraint 'node.hostname!=black-pearl' shawoo/node:eco
 docker service create --name ecoe -e APP_ID=ecoe -e APP_PORT=8080 -p 3605:3500 --network my-network --constraint 'node.hostname==black-pearl' shawoo/java8:eco-arm
+
+docker service create --name ecof -e APP_ID=ecof -e APP_PORT=5000 -p 3606:3500 --network my-network --constraint 'node.hostname==cds' shawoo/dotnet6:eco
+
 docker plugin install weaveworks/net-plugin:latest_release
 docker stack deploy --compose-file docker-compose.yml ecosys
 </pre>
