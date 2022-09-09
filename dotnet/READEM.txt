@@ -1,0 +1,4 @@
+dotnet new webapi --no-https
+dotnet run
+
+:5100/WeatherForecast/
