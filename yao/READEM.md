@@ -7,5 +7,5 @@ yao start --debug
 
 
 <pre>
-   爻(yáo)  xiang 姤(gou)   巽(xùn)  坤(kūn)
+   爻(yáo) 象(xiang) 姤(gou) 巽(xùn) 坤(kūn)
 </pre>
