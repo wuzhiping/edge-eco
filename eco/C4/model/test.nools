@@ -33,9 +33,24 @@ rule "invok"
       i : Inbound 1==1;
    }
    then{
+   
+           dapr.invoke( "app0x" ,
+                   "/model/act" ,
+                   "POST",
+                   { from:"dapr-v2",value:"abc",temp:(new Date()).getTime() },
+                   i.header.headers,
+                   function(error, response, body) {
+                              if(error)
+                                 console.log("send"+error);
+                              outBound.result = body;
+                              next();
+                   });
+
+      /*
       dapr.daprClient.invoker.invoke("app0x" , "model/act" , dapr.HttpMethod.POST, { from:"dapr",value:"abc",temp:(new Date()).getTime() })
                   .then(  (d)=> { console.dir(d);outBound.result = d; outBound.result.ct = outBound.ct; next()})
                   .catch( (e)=> { console.dir(e);outBound.result = i.payload; outBound.result.ct = outBound.ct; next() });
+      */
    }
 }
 
