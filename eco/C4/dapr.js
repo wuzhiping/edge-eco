@@ -12,9 +12,9 @@ module.exports = {
         invoke : function(node,api,method,payload,headers,cb){
                      request( {
                                   url: "http:\/\/"+http.daprHost+":"+http.daprPort+"/v1.0/invoke/"+node+"/method"+api,
-                               method: method || "POST",
-                              headers: headers || { },
-                                 json: payload
+                               method: method || "GET",
+                              headers: headers || { 'Content-Type': 'application/json' },
+                                 json: payload || { }
                                }, cb);
                  }
 };
