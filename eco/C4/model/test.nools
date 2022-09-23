@@ -38,7 +38,10 @@ rule "invok"
                    "/model/act" ,
                    "POST",
                    { from:"dapr-v2",value:"abc",temp:(new Date()).getTime() },
-                   i.header.headers,
+                   {
+                      'content-type': 'application/json'
+                       traceparent: i.header.headers.traceparent
+                   },
                    function(error, response, body) {
                               if(error)
                                  console.log("send"+error);
