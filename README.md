@@ -1,3 +1,5 @@
+# docker service create --name dtm -p 36789:36789 -p 36790:36790 --network my-network --constraint 'node.hostname==cds' yedf/dtm:latest
+
 # docker pull mcr.microsoft.com/dotnet/runtime:6.0
 
 # docker-compose
