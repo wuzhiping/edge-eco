@@ -1,0 +1,26 @@
+apiVersion: dapr.io/v1alpha1
+kind: Configuration
+metadata:
+  name: appconfig
+spec:
+  nameResolution:
+    component: "consul"
+    configuration:
+      client:
+        address: "consul:8500"
+      selfRegister: true
+      daprPortMetaKey: "DAPR_PORT"
+      advancedRegistration:
+        name: "${APP_ID}"
+        port: ${APP_PORT}
+        address: "${APP_ID}"
+  mtls:
+    enabled: false
+  tracing:
+    enabled: true
+    exporterType: zipkin
+    samplingRate: "1"
+    expandParams: true
+    includeBody: true
+    zipkin:
+      endpointAddress: "http://zipkin:9411/api/v2/spans" 
