@@ -94,3 +94,41 @@ services:
       - redisdb
       - placement
       - zipkin
+
+  yao:
+    image: shawoo/yao:edge-0.10.1
+    restart: always
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - /etc/timezone:/etc/timezone:ro
+      - /opt/s3/xyz/yao:/opt/app
+    environment:
+      - APP_ID=yao
+      - APP_PORT=5099
+      - TZ=Asia/Shanghai
+    ports:
+      - 5099:5099
+    depends_on:
+      #- consul
+      - redisdb
+      - placement
+      - zipkin
+
+  fast:
+    image: shawoo/fastapi:edge
+    restart: always
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - /etc/timezone:/etc/timezone:ro
+    environment:
+      - APP_ID=fast
+      - APP_PORT=8000
+      - TZ=Asia/Shanghai
+    ports:
+      - 8989:8080
+    depends_on:
+      #- consul
+      - redisdb
+      - placement
+      - zipkin
+
