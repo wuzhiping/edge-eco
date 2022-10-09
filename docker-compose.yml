@@ -132,3 +132,46 @@ services:
       - placement
       - zipkin
 
+  strapi:
+    build: ./strapi
+    restart: always
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - /etc/timezone:/etc/timezone:ro
+      #- ./fast.sh:/opt/api/start.sh
+    privileged: true
+    environment:
+      - VER=0.1
+      - APP_ID=strapi
+      - APP_PORT=1337
+      - TZ=Asia/Shanghai
+    ports:
+      - 1337:1337
+    depends_on:
+      #- consul
+      - redisdb
+      - placement
+      - zipkin
+
+  dash:
+    image: shawoo/dash:edge
+    restart: always
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - /etc/timezone:/etc/timezone:ro
+      #- ./fast.sh:/opt/api/start.sh
+    privileged: true
+    environment:
+      - VER=0.6
+      - APP_ID=dash
+      - APP_PORT=8050
+      - TZ=Asia/Shanghai
+    ports:
+      - 8889:8888
+      - 8050:8050
+    depends_on:
+      #- consul
+      - redisdb
+      - placement
+      - zipkin
+
