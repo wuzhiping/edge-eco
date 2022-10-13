@@ -1,0 +1,36 @@
+global request= require('request');
+global dapr = require("../dapr.js");
+global supabase = require("../supabase.js");
+define Inbound {
+    header:null,
+    payload:null,
+    constructor : function(header,payload){
+        this.payload = payload;
+        this.header = header;
+    }
+}
+
+rule "pip 2 strapi"
+{
+   when{
+      i : Inbound 1==1;
+   }
+   then{
+
+      dapr.invoke("strapi",
+                  "/api/"+i.header.query.url,
+                  i.header.method,
+                  i.payload,
+                  null,
+                  function(err, res){
+                       outBound.result = {
+                           err:  err,
+                           args: i.header.uri.split("?")[0].split("/"),
+                           uri:  i.header.uri,
+                           query:i.header.query,
+                           data: res.body
+                       };
+                       next();
+                  });
+   }
+}
