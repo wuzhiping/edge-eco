@@ -1,0 +1,35 @@
+global G = require('graphql-request');
+
+define Inbound {
+    header:null,
+    payload:null,
+    constructor : function(header,payload){
+        this.payload = payload;
+        this.header = header;
+    }
+}
+
+rule "graphql"
+{
+   when{
+      i : Inbound 1==1;
+   }
+   then{
+
+const query = G.gql`
+  query MyQuery($ID:ID)
+  {
+    abcs( filters: {id: {eq: $ID}} ) {
+       data {
+          id
+       }
+    }
+  }
+`;
+       G.request('http:\/\/localhost:1337/graphql', query, {ID:1})
+        .then((data) => { outBound.result = data; next(); } )
+        .catch( (e)  => { outBound.result = e;next(); } );
+
+      //
+   }
+}
