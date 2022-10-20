@@ -152,6 +152,25 @@ services:
       - redisdb
       - placement
       - zipkin
+  nstr:
+    image: shawoo/nstr:edge
+    restart: always
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - /etc/timezone:/etc/timezone:ro
+      - ./nstr/C4/:/opt/bpm/C4/
+      #- ./fast.sh:/opt/api/start.sh
+    privileged: true
+    environment:
+      - APP_ID=nstr
+      - APP_PORT=3303
+      - TZ=Asia/Shanghai
+    ports:
+      - 2337:1337
+    depends_on:
+      - redisdb
+      - placement
+      - zipkin
 
   dash:
     image: shawoo/dash:edge
