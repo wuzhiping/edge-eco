@@ -6,13 +6,22 @@ from fastapi import FastAPI
 from routers.users import router as users_router
 from dashapp import create_dash_app
 
+from random import randrange
+import numpy as np
+import pandas as pd
+import copy
+
 app = FastAPI()
 
 app.include_router(users_router, prefix = "/users", tags=["users"])
 
 @app.get("/")
 def read_root():
-    return {"Hello": "World"}
+    seq = [randrange(10**10) for i in range(100)]
+    seq.sort(reverse=True)
+    a = copy.deepcopy(seq)
+    return pd.DataFrame(a).diff().abs().sort_values(by=0).fillna(0).to_dict()
+    #return {"Hello": "World"}
 
 
 @app.get("/items/{item_id}")
