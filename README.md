@@ -1,3 +1,22 @@
+<pre>
+docker run --rm -it shawoo/node:edge /bin/bash
+
+node -v
+
+export https_proxy="http://10.20.46.34:3128"
+
+curl -o- https://a.feg.com.tw/nvm-v0.39.4-install.sh | bash
+
+su
+
+source ~/.profile
+
+nvm install 18
+nvm use 18
+
+node -v
+</pre>
+
 # docker service create --name dtm -p 36789:36789 -p 36790:36790 --network my-network --constraint 'node.hostname==cds' yedf/dtm:latest
 
 # docker pull mcr.microsoft.com/dotnet/runtime:6.0
