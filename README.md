@@ -13,7 +13,8 @@ source ~/.profile
 
 nvm install 18
 nvm use 18
-
+nvm alias default 18
+       
 node -v
 </pre>
 
