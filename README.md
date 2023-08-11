@@ -12,7 +12,7 @@ su
 source ~/.profile
 </strong>
        
-SHELL ["/bin/sh", "-c"]
+SHELL ["/bin/bash", "-c"]
        
 nvm install 18
 nvm use 18
