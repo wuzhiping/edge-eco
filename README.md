@@ -7,10 +7,13 @@ export https_proxy="http://10.20.46.34:3128"
 
 curl -o- https://a.feg.com.tw/nvm-v0.39.4-install.sh | bash
 
+<strong>
 su
-
 source ~/.profile
-
+</strong>
+       
+SHELL ["/bin/sh", "-c"]
+       
 nvm install 18
 nvm use 18
 nvm alias default 18
