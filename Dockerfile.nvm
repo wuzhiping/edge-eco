@@ -1,0 +1,10 @@
+FROM shawoo/node:edge
+
+SHELL ["/bin/bash", "-c"]
+
+RUN node -v
+
+RUN curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.4/install.sh | bash
+
+RUN source ~/.profile; nvm install 18; nvm use 18; nvm alias default 18
+
