@@ -1,3 +1,21 @@
+# share 
+<pre>
+docker network ls
+       
+docker run --rm -it --name=tools --network=xxx_yyyy busybox /bin/sh
+
+docker-compose.yaml       
+       version: "3"
+       services:
+         tools:
+           image: busybox
+           container_name: tools
+           command: ping postgres
+       networks:
+         default:
+           external:
+             name: xxx_yyyy
+
 <pre>
 docker run --rm -it shawoo/node:edge /bin/bash
 
