@@ -15,7 +15,7 @@ docker-compose.yaml
          default:
            external:
              name: xxx_yyyy
-
+</pre>
 <pre>
 docker run --rm -it shawoo/node:edge /bin/bash
 
