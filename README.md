@@ -18,6 +18,13 @@ services:
       interval: 60s
       timeout: 60s
       retries: 3
+
+  supertokens:
+    image: registry.supertokens.io/supertokens/supertokens-postgresql
+    restart: always
+    #ports:
+    #  3567:3567
+       
   opa:
     image: openpolicyagent/opa:0.56.0
     restart: always
