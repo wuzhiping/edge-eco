@@ -10,7 +10,7 @@ version: "3"
 services:
   tools:
     #image: busybox
-    image: jonlabelle/network-tools
+    image: shawoo/network-tools
     container_name: tools
     command: ping openresty
     healthcheck:
