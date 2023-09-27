@@ -4,17 +4,35 @@ docker network ls
        
 docker run --rm -it --name=tools --network=xxx_yyyy busybox /bin/sh
 
-docker-compose.yaml       
-       version: "3"
-       services:
-         tools:
-           image: busybox
-           container_name: tools
-           command: ping postgres
-       networks:
-         default:
-           external:
-             name: xxx_yyyy
+docker-compose.yaml
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+version: "3"
+services:
+  tools:
+    #image: busybox
+    image: jonlabelle/network-tools
+    container_name: tools
+    command: ping openresty
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://opa:8181"]
+      interval: 60s
+      timeout: 60s
+      retries: 3
+  opa:
+    image: openpolicyagent/opa:0.56.0
+    restart: always
+    #ports:
+    #  - "8181:8181"
+    command:
+      - "run"
+      - "--server"
+      - "--set=decision_logs.console=true"
+
+networks:
+  default:
+    external:
+      name: axelor_default
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 </pre>
 <pre>
 docker run --rm -it shawoo/node:edge /bin/bash
