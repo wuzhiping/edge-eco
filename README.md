@@ -6,6 +6,8 @@ docker network ls
        
 docker run --rm -it --name=tools --network=xxx_yyyy busybox /bin/sh
 
+docker run --rm -it -v /var/run/docker.sock:/var/run/docker.sock --user root --network=xxx_yyyy docker /bin/sh       
+
 docker-compose.yaml
 >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 version: "3"
