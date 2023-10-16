@@ -46,7 +46,7 @@ networks:
 <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 </pre>
 <pre>
-docker run --rm -it shawoo/node:edge /bin/bash
+docker run --rm -it shawoo/node:edge-py3 /bin/bash
 
 node -v
 
@@ -73,7 +73,7 @@ node -v
 # docker pull mcr.microsoft.com/dotnet/runtime:6.0
 
 # docker-compose
-## shawoo/node:edge
+## shawoo/node:edge-py3
 ## shawoo/node:edge-arm
 # docker swarm
 ## shawoo/node:eco    
