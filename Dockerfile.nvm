@@ -1,4 +1,4 @@
-FROM shawoo/node:edge
+FROM shawoo/node:edge-py3
 
 SHELL ["/bin/bash", "-c"]
 
