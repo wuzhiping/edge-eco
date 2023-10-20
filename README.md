@@ -1,5 +1,11 @@
 # share 
 <pre>
+  sudo vi /usr/local/share/ca-certificates/ateam.crt
+  sudo update-ca-certificates
+  tail /etc/ssl/certs/ca-certificates.crt -n 50
+</pre>
+
+<pre>
 docker run -d --name autoheal --restart=always -e AUTOHEAL_CONTAINER_LABEL=all -v /var/run/docker.sock:/var/run/docker.sock willfarrell/autoheal
        
 docker network ls
