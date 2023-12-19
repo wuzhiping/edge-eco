@@ -1,5 +1,9 @@
 # share 
 <pre>
+  docker run --rm -it -v /var/run/docker.sock:/var/run/docker.sock -v $HOME/Library/Caches:/root/.cache/ aquasec/trivy:0.48.0 image postgres:16 --timeout 600m
+</pre>
+
+<pre>
   sudo vi /usr/local/share/ca-certificates/ateam.crt
   sudo update-ca-certificates
   tail /etc/ssl/certs/ca-certificates.crt -n 50
