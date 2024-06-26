@@ -1,0 +1,9 @@
+apt update
+apt install build-essential zlib1g-dev libncurses5-dev libgdbm-dev libnss3-dev libssl-dev libreadline-dev libffi-dev wget
+
+wget https://www.python.org/ftp/python/3.12.0/Python-3.12.0b3.tgz
+tar -xvf Python-3.12.2
+cd Python-3.12.2
+./configure --enable-optimizations
+
+make install
